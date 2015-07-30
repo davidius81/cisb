@@ -6,9 +6,11 @@ In this example we will deploy a simple Linux vm on Azure
 
 ### Create a Ressource Group
 ```
+# azure group create -n rgDlalonde -l "East Us"
+```
 
-root@dlscusvmtest1:/opt/cgi/IaaSv2/azure-quickstart-templates/101-simple-linux-vm# azure group create -n rgDlalonde -l "East Us"
-
+This will show you the following output.
+```
 info:    Executing command group create
 + Getting resource group rgDlalonde
 + Creating resource group rgDlalonde
@@ -24,10 +26,13 @@ info:    group create command OK
 
 ### Deploy the new vm using a Azure template written in json
 
+
 ```
-root@dlscusvmtest1:/opt/cgi/IaaSv2/azure-quickstart-templates/101-simple-linux-vm# azure group deployment create -f /opt/cgi/IaaSv2/azure-quickstart-templates/101-simple-linux-vm/azuredeploy.
-azuredeploy.json             azuredeploy.parameters.json
-root@dlscusvmtest1:/opt/cgi/IaaSv2/azure-quickstart-templates/101-simple-linux-vm# azure group deployment create -f /opt/cgi/IaaSv2/azure-quickstart-templates/101-simple-linux-vm/azuredeploy.json -e ./azuredeploy.parameters.json -g rgDlalonde -n testdeployement
+# azure group deployment create -f /opt/cgi/IaaSv2/azure-quickstart-templates/101-simple-linux-vm/azuredeploy.json -e ./azuredeploy.parameters.json -g rgDlalonde -n testdeployement
+```
+
+Output
+```
 info:    Executing command group deployment create
 + Initializing template configurations and parameters
 + Creating a deployment
