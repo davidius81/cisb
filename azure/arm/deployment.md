@@ -28,7 +28,11 @@ info:    group create command OK
 
 
 ```
-# azure group deployment create -f /opt/cgi/IaaSv2/azure-quickstart-templates/101-simple-linux-vm/azuredeploy.json -e ./azuredeploy.parameters.json -g rgDlalonde -n testdeployement
+# azure group deployment create \
+ -f /opt/cgi/IaaSv2/azure-quickstart-templates/101-simple-linux-vm/azuredeploy.json \
+ -e ./azuredeploy.parameters.json \
+ -g rgDlalonde \
+ -n testdeployement
 ```
 
 Output
