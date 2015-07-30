@@ -2,7 +2,7 @@
 CSIB R&amp;D documents
 
 
-This reposiroty is to test the documentation on git using md file
+This repository is to test the documentation on git using md file format
 
 ```
 test
