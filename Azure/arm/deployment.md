@@ -1,5 +1,5 @@
 
-
+ 
 # IaaS v2  featuring ARM mode
 
 In this example we will deploy a simple Linux vm on Azure
