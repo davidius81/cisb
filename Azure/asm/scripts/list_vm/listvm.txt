@@ -1,0 +1,56 @@
+info:    Executing command vm list
+info:    Getting virtual machines
+data:    Name              Status              Location          DNS Name                             IP Address   
+data:    ----------------  ------------------  ----------------  -----------------------------------  -------------
+data:    VM-Docker20       ReadyRole           East US           daniloandon.cloudapp.net             100.76.80.97 
+data:    VM-Docker21       ReadyRole           East US           daniloandon.cloudapp.net             100.76.58.48 
+data:    VM-Docker-22      ReadyRole           East US           daniloandon.cloudapp.net             100.76.56.24 
+data:    VM-Docker-23      ReadyRole           East US           daniloandon.cloudapp.net             100.76.56.23 
+data:    VM-Docker-24      ReadyRole           East US           daniloandon.cloudapp.net             100.76.56.32 
+data:    VM-Docker-node10  ReadyRole           East US           daniloandon.cloudapp.net             100.76.100.71
+data:    VM-Docker-node20  ReadyRole           East US           daniloandon.cloudapp.net             100.76.2.34  
+data:    big-G1-VM         ReadyRole           West US           andonbigserver.cloudapp.net          100.76.136.7 
+data:    clientpuppet07    ReadyRole           West US           andonbigserver.cloudapp.net          100.78.144.21
+data:    gw00              StoppedDeallocated  East US           mlml-bigdata.cloudapp.net                         
+data:    Mytest-1          StoppedDeallocated  East US           mytest-1.cloudapp.net                             
+data:    coseudnode-1      ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.4    
+data:    coseudnode-10     ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.14   
+data:    coseudnode-11     ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.20   
+data:    coseudnode-2      ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.5    
+data:    coseudnode-22     ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.28   
+data:    coseudnode-23     ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.29   
+data:    coseudnode-24     ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.30   
+data:    coseudnode-25     ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.36   
+data:    coseudnode-3      ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.6    
+data:    coseudnode-4      ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.12   
+data:    coseudnode-5      ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.13   
+data:    coseukubenode1    ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.64.0.4    
+data:    coseukubenode2    ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.64.0.5    
+data:    coseukubenode3    ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.64.0.6    
+data:    cosneuqadock02    ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.9     
+data:    cosneuqadock03    ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.10    
+data:    cosneuqanode02    ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.6     
+data:    cosneuqanode03    ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.7     
+data:    cosneuqanode04    ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.8     
+data:    cosneuqapm01      ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.4     
+data:    csib-node0001     ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.12    
+data:    csib-node0002     ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.13    
+data:    csib-node0003     ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.14    
+data:    dl-test2node2     ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.5     
+data:    dltestkey         ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.0.0.11    
+data:    snappycore01      ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.21   
+data:    snappycore02      ReadyRole           cosneumgmtag01    cosneumgmtcs01.cloudapp.net          10.32.0.22   
+data:    Vince-test        StoppedDeallocated  West Europe       vince-test.cloudapp.net                           
+data:    SRoger-VM         StoppedDeallocated  East US           sroger-cgicloudservice.cloudapp.net               
+data:    dl-puppet-node1   ReadyRole           South Central US  dl-scus-cs-test1.cloudapp.net        172.16.0.7   
+data:    dlscusvmtest1     ReadyRole           South Central US  dl-scus-cs-test1.cloudapp.net        172.16.0.4   
+data:    Vince-test2       StoppedDeallocated  West Europe       vince-test2.cloudapp.net                          
+data:    etcd-00           ReadyRole           West Europe       kube-01b70fea4e35bf.cloudapp.net     172.18.0.4   
+data:    etcd-01           ReadyRole           West Europe       kube-01b70fea4e35bf.cloudapp.net     172.18.0.5   
+data:    etcd-02           ReadyRole           West Europe       kube-01b70fea4e35bf.cloudapp.net     172.18.0.6   
+data:    kube-00           ReadyRole           West Europe       kube-01b70fea4e35bf.cloudapp.net     172.18.0.12  
+data:    kube-01           ReadyRole           West Europe       kube-01b70fea4e35bf.cloudapp.net     172.18.0.13  
+data:    kube-02           ReadyRole           West Europe       kube-01b70fea4e35bf.cloudapp.net     172.18.0.14  
+data:    kube-03           ReadyRole           West Europe       kube-01b70fea4e35bf.cloudapp.net     172.18.0.20  
+data:    kube-04           ReadyRole           West Europe       kube-01b70fea4e35bf.cloudapp.net     172.18.0.21  
+info:    vm list command OK
