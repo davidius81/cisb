@@ -5,9 +5,9 @@
 
 ####Products / Costs
 * DockerHub 
-* * DockerHub On-Prem
-* * DockerHub Private
-* * DockerHub Public
+ * DockerHub On-Prem
+ * DockerHub Private
+ * DockerHub Public
 * Quay.io
-
+* Others
 
