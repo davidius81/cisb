@@ -1,2 +1,2 @@
 
-#  The Directory contains the documentation about all kind of repository needed
+#  The Directory contains the documentation about all kind of repositories needed
