@@ -1,3 +1,0 @@
-info:    Executing command vm image list
-info:    Fetching VM images
-info:    Error information has been recorded to /root/.azure/azure.err
