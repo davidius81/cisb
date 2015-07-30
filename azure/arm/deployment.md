@@ -24,7 +24,7 @@ data:
 info:    group create command OK
 ```
 
-### Deploy the new vm using a Azure template written in json
+### Deploy the new vm using a Azure json template 
 
 
 ```
