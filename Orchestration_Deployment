@@ -1,0 +1,40 @@
+
+
+### In this document, we will evaluate how CSIB will be built, deployed and managed:
+
+First we need to evaluate more than on products.
+
+#### Products
+*Terraform
+*Parser
+*
+
+We need to have a tracking product.
+Proprietary
+*TestTrack (1998) 
+*FogBugz (2000)
+*Axosoft (2002) 
+*Jira (2002) 
+*YouTrack (2009)
+
+|-----------------------------------|
+| Bug tracking systems              |
+|-----------------------------------|
+|Client-Server             |        |
+| Free software|Proprietary| Test Track---------|-------|
+| GNATS | DEBUG
+
+Bug tracking systems
+|Client-server|
+|Free software         |Proprietary
+|GNATS (1992) |
+|Debbugs (1994 / 1999)| 
+|Bugzilla (1998)| 
+|Request Tracker (1999)| MantisBT (2000)| Roundup (2001)| The Bug Genie (2003) |Trac (2006)| Redmine (2006)| Maniphest (2010)| Apache Bloodhound (2012)|
+Proprietary
+TestTrack (1998) FogBugz (2000) Axosoft (2002) Jira (2002) YouTrack (2009)
+Distributed	
+Fossil (2006)
+Hosted	
+SourceForge (1999) BerliOS (2000) GNU Savannah (2000) Launchpad (2004) Assembla (2005) CodePlex (2006) Google Code (2007) GitHub (2008) Bitbucket (2008) Bontq (2010) YouTrack (2011)
+Category Category Comparison
