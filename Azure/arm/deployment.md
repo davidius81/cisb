@@ -86,3 +86,22 @@ data:    ubuntuOSVersion        String        14.04.2-LTS
 info:    group deployment create command OK
 
 ```
+
+
+List the new VM
+
+```
+# azure vm list -g rgdlalonde2
+```
+
+
+Output
+
+```
+info:    Executing command vm list
++ Getting virtual machines
+data:    Name        ProvisioningState  Location  Size
+data:    ----------  -----------------  --------  -----------
+data:    MyUbuntuVM  Succeeded          westus    Standard_D1
+info:    vm list command OK
+```
