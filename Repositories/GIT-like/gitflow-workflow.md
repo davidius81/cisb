@@ -39,8 +39,8 @@ release-*
 Creating the branches
 
 
-- Master (Tag = 1.1) -> Feature branch -> develop -> release ->  master (Tag 1.2 )
-- Master -> hotfixes -> Master  (Tag = 1.2.1)
+- Master (Tag = 1.1)  > Feature branch > develop > release >  master (Tag 1.2 )
+- Master **>** hotfixes > Master  (Tag = 1.2.1)
 
 
 Release branch
