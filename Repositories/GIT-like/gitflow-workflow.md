@@ -11,14 +11,15 @@ The main branches are:
 * Release branches 
 * Hotfixes branches
 
-
-#### Features branches
+**Features branches**
 The active development will be in these branches, developper can work on the same feature branch prior to promote it to the next level.
 
-#### Release branches
+** Release branches**
+
 These branches are there to prepare the production release. Only small change are allowed.
 
-#### HotFixes
+** HotFixes**
+
 These branches are only to fix a bug from the productions.
 
 
