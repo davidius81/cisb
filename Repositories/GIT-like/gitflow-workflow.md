@@ -34,9 +34,9 @@ These branches are only to fix a bug from the productions.
 
 ###Namming convention
 
-myfeature
-release-*
-hotfix-*
+*myfeature
+*release-*
+*hotfix-*
 
 
 Creating the branches
