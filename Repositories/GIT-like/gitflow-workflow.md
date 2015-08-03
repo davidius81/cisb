@@ -33,11 +33,12 @@ These branches are only to fix a bug from the productions.
 
 ###Namming convention
 
+myfeature
 release-*
+hotfix
 
 
 Creating the branches
-
 
 - Master (Tag = 1.1)  > Feature branch > develop > release >  master (Tag 1.2 )
 - Master > hotfixes > Master  (Tag = 1.2.1)
@@ -45,7 +46,14 @@ Creating the branches
 
 ### Technical example
 
-####Promote Feature branch to devlop
+1. Create Feature branch
+
+```
+$ git checkout -b myfeature develop
+Switched to a new branch "myfeature"
+```
+
+2.Promote Feature branch to develop
 
 ```
 $ git checkout develop
@@ -58,7 +66,7 @@ Deleted branch myfeature (was 05e9557).
 $ git push origin develop
 ```
 
-####Create a release branch
+3.Create a release branch
 ```
 $ git checkout -b release-1.2 develop
 Switched to a new branch "release-1.2"
@@ -70,3 +78,27 @@ $ git commit -a -m "Bumped version number to 1.2"
 ```
 
 
+4.Finishing a release Branch
+```
+$ git checkout master
+Switched to branch 'master'
+$ git merge --no-ff release-1.2
+Merge made by recursive.
+(Summary of changes)
+$ git tag -a 1.2
+```
+
+5.Merge the new Release back to develop
+
+```
+$ git checkout develop
+Switched to branch 'develop'
+$ git merge --no-ff release-1.2
+Merge made by recursive.
+(Summary of changes)
+```
+
+6.Delete the release branch
+
+$ git branch -d release-1.2
+Deleted branch release-1.2 (was ff452fe).
