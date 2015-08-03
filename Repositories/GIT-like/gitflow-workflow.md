@@ -13,18 +13,22 @@ The main branches are:
 
 
 #### Features branches
-*Devops will create a feature branch to develop their new feature. 
-*Co-workers can work in paralell on the same features. 
+The active development will be in these branches, developper can work on the same feature branch prior to promote it to the next level.
 
 #### Release branches
 These branches are there to prepare the production release. Only small change are allowed.
 
 #### HotFixes
-
 These branches are only to fix a bug from the productions.
 
 
-Feature branches
+###Brief Workflow
 
-Devops can share their work using the branches and release it promote the feature branches to develop only when it's ready to use
-![alt text](http://nvie.com/img/git-model@2x.png "Logo Git Workflow")
+1. Code are checkout from Master Branch to create a feature branch.
+2. Developer are working on this new feature branch.
+3. When ready, the code will be commit to the release branch.
+4. Release branch will be promoted to the master and tagged with the release number.
+5. Hotfixes will be checkout from Master and release to master/tag directly
+
+
+
