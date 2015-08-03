@@ -43,7 +43,22 @@ Creating the branches
 - Master > hotfixes > Master  (Tag = 1.2.1)
 
 
-Release branch
+### Technical example
+
+####Promote Feature branch to devlop
+
+```
+$ git checkout develop
+Switched to branch 'develop'
+$ git merge --no-ff myfeature
+Updating ea1b82a..05e9557
+(Summary of changes)
+$ git branch -d myfeature
+Deleted branch myfeature (was 05e9557).
+$ git push origin develop
+```
+
+####Create a release branch
 ```
 $ git checkout -b release-1.2 develop
 Switched to a new branch "release-1.2"
