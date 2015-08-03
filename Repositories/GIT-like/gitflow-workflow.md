@@ -26,7 +26,7 @@ These branches are only to fix a bug from the productions.
 
 ###Brief Workflow
 
-1. Code are checkout from Master Branch to create a feature branch.
+1. Code are checkout from Master branch to create a feature branch.
 2. Developer are working on this new feature branch.
 3. When ready, the code will be commit to the release branch.
 4. Release branch will be promoted to the master and tagged with the release number.
@@ -36,13 +36,13 @@ These branches are only to fix a bug from the productions.
 
 myfeature
 release-*
-hotfix
+hotfix-*
 
 
 Creating the branches
 
 - Master (Tag = 1.1)  > Feature branch > develop > release >  master (Tag 1.2 )
-- Master > hotfixes > Master  (Tag = 1.2.1)
+- Master > hotfixes > develop & Master  (Tag = 1.2.1)
 
 
 ### Technical example
@@ -100,6 +100,7 @@ Merge made by recursive.
 ```
 
 6.Delete the release branch
-
+```
 $ git branch -d release-1.2
 Deleted branch release-1.2 (was ff452fe).
+```
