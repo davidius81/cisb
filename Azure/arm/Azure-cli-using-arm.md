@@ -24,3 +24,10 @@ Show more detailled logs
 ```
 azure insights logs list -g rgdlCoreOSCluster01 | grep -i fail
 ```
+
+```
+# azure insights logs list -g  dies_dlalonde4 -d -b '2015-08-03T19:00:00.991Z' -e '2015-08-03T22:00:00.991Z'
+info:    Executing command insights logs list
+- Querying "eventTimestamp ge '2015-08-03T19:00:00.991Z' and eventTimestamp le '2015-08-03T22:00:00.991Z' and resourceGroupName eq 'dies_dlalon+e4'"
+info:    insights logs list command OK
+```
