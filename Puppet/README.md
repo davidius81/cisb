@@ -3,7 +3,6 @@
 This Document is related to Puppet infra
 
 
-##Puppet Infrastructure
 
 
 This Document is related to Puppet infra
@@ -24,4 +23,8 @@ This Document is related to Puppet infra
 First [download](http://puppetlabs.github.io/geppetto/download.html) it.
 
 
+
+##Puppet Infrastructure
+
+![alt text](http://puppetlunch.com/public/images/planning2.png "Puppet Architecture")
 
