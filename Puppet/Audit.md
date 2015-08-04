@@ -6,11 +6,25 @@
 * Send scan report or any files
 * Record root history
 
+### Create and run scan audit script
+
+Create Manifest or module and assign it to the Puppet nodes.
+
+Schedule a within a job scheduler, at,cron,anacron or more probably Jenkins.
+
+
+A Puppet Mani
 
 ### Send file to Auditor
 
-Puppet FileBucket
-Scan script rsync -e ssh to CSIB or relay to On-Premise server.
+We must add a command to the auditor script/scan to send the report back to auditor depot.
+
+*Puppet FileBucket
+* Scp
+* rsync -e ssh
+* https 
+* Puppet sync dir is too complexe to this purpose.
+* Others...
 
 
 ###Record shell output 
