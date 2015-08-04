@@ -17,4 +17,4 @@
 
 ``` 
 ensure => $under_maintenance ? {true => "present", false => "absent"}
-```
+
