@@ -2,7 +2,15 @@
 
 #Security and Audit
 
+* Create and run scan audit script
+* Send scan report or any files
+* Record root history
 
+
+### Send file to Auditor
+
+Puppet FileBucket
+Scan script rsync -e ssh to CSIB or relay to On-Premise server.
 
 
 ###Record shell output 
