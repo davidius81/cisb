@@ -14,5 +14,11 @@ Product selected:
  Monitoring| Zabbix & ELK|
  Dashboard| RTM|
  Inventory| WebCentral and RTM|
+ Documentation| MarkDown File on Git repo|
+ Tracking system| bugzilla or ITSM|
+RBAC| Azure IaaS | Using ARM v2
+      |Git| Using Gitolite/Gitlab
+      
+
  
   
