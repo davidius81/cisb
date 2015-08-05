@@ -19,7 +19,7 @@ In this example, my Puppet Master server is **cosneuqapm01** and run Puppet Open
 ```
 
 Output
-```
+```puppet
 [root@cosneuqapm01 modules]# puppet module install garethr-docker
 Notice: Preparing to install into /etc/puppetlabs/code/environments/production/modules ...
 Notice: Downloading from https://forgeapi.puppetlabs.com ...
@@ -165,3 +165,67 @@ Notice: /Stage[main]/Main/Node[cosneuqanode03]/Docker::Image[registry:2]/Exec[do
 Notice: Applied catalog in 2.18 seconds
 
 ```
+
+
+Generate a SSL certificate for the Docker Registry
+
+```
+
+[root@cosneuqanode03 ~]# 
+[root@cosneuqanode03 ~]# openssl genrsa -out client.key 1024
+Generating RSA private key, 1024 bit long modulus
+........++++++
+.......++++++
+e is 65537 (0x10001)
+[root@cosneuqanode03 ~]# openssl req -new -x509 -text -key client.key -out client.cert
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:CA
+State or Province Name (full name) []:QUEBEC
+Locality Name (eg, city) [Default City]:MONTREAL
+Organization Name (eg, company) [Default Company Ltd]:CGI
+Organizational Unit Name (eg, section) []:GIS
+Common Name (eg, your name or your server's hostname) []:cosneuqanode03
+Email Address []:david.lalonde@cgi.com
+
+
+
+```
+
+Populate Docker Registry
+```
+[root@cosneuqanode03 ~]# docker images
+REPOSITORY                        TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+localhost:5000/batman/ubuntu      latest              63e3c10217b8        25 hours ago        188.3 MB
+cosneuqanode03:5000/csib/ubuntu   latest              63e3c10217b8        25 hours ago        188.3 MB
+docker.io/ubuntu                  latest              63e3c10217b8        25 hours ago        188.3 MB
+docker.io/ubuntu                  precise             d0e008c6cf02        25 hours ago        134.7 MB
+docker.io/registry                2                   b4ad0b763f11        3 weeks ago         548.6 MB
+[root@cosneuqanode03 ~]#  docker push localhost:5000/batman/ubuntu
+The push refers to a repository [localhost:5000/batman/ubuntu] (len: 1)
+63e3c10217b8: Image already exists
+389028aa9e91: Image successfully pushed
+dac7bccb8ac3: Image successfully pushed
+2eaf0096818b: Image successfully pushed
+Digest: sha256:bdb5c1d1d2f0a85e503d1beb4da6b54ed20ba533a557d6095567e42cea35fe01
+
+```
+
+
+[root@cosneuqanode03 ~]# tree -L 5 /myregistrydata
+/myregistrydata
+└── docker
+    └── registry
+        └── v2
+            ├── blobs
+            │   └── sha256
+            └── repositories
+                └── batman
+
+7 directories, 0 files
+
