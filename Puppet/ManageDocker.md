@@ -47,7 +47,7 @@ Install docker on a node and define a DNS server for the containers
 
 This way, docker will be installed on all nodes assigned to this environment.
 
-In this example, I will use the defaut environment named production.
+I will use the defaut environment named **production**.
 
 ```
 # cd /etc/puppetlabs/code/environments/production/manifests/
@@ -106,4 +106,62 @@ Aug 04 20:27:43 cosneuqanode03 docker[3200]: time="2015-08-04T20:27:43Z" level=i
 Aug 04 20:27:43 cosneuqanode03 docker[3200]: time="2015-08-04T20:27:43Z" level=info msg="Daemon has completed initialization"
 Aug 04 20:27:43 cosneuqanode03 systemd[1]: Started Docker Application Container Engine.
 Hint: Some lines were ellipsized, use -l to show in full.
+```
+
+
+Now I'm going to build and run a Docker Registry on my node cosneuqanode03 which is a Centos 7.1.
+
+*Source:(https://docs.docker.com/registry/deploying/)*
+
+```puppet
+#  vi csibnode.pp
+
+node 'cosneuqanode03' {
+
+docker::image { 'registry:2':}
+
+docker::run {'cgiregistry01':
+   image           => 'registry:2',
+   ports           => '5000:5000',
+   use_name        => 'true',
+   volumes         => '/myregistrydata:/var/lib/registry',
+   env             => 'REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/var/lib/registry',
+   restart_service => true,
+   pull_on_start   => false,
+   before_stop     => 'echo "So Long, and Thanks for All the Fish"',
+}
+
+```
+
+On the client node, apply the change and verify if the image has been pull on the server and check:
+
+```puppet
+[root@cosneuqanode03 ~]# /opt/puppetlabs/bin/puppet agent --t
+...
+[root@cosneuqanode03 ~]# docker images
+REPOSITORY                        TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+docker.io/ubuntu                  latest              63e3c10217b8        23 hours ago        188.3 MB
+docker.io/ubuntu                  precise             d0e008c6cf02        23 hours ago        134.7 MB
+docker.io/registry                2                   b4ad0b763f11        3 weeks ago         548.6 MB
+
+```
+List running containers and see if the new private docker registry is running
+```
+[root@cosneuqanode03 ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                    NAMES
+7c2bc44af430        registry:2          "registry cmd/regist   3 minutes ago      Up 3 minutes       0.0.0.0:5000->5000/tcp   cgiregistry01   
+      
+
+```
+
+```puppet
+[root@cosneuqanode03 ~]# /opt/puppetlabs/bin/puppet  agent -t
+Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Loading facts
+Info: Caching catalog for cosneuqanode03.cosneumgmtcs01.b6.internal.cloudapp.net
+Info: Applying configuration version '1438790059'
+Notice: /Stage[main]/Main/Node[cosneuqanode03]/Docker::Image[registry:2]/Exec[docker pull registry:2]/returns: executed successfully
+Notice: Applied catalog in 2.18 seconds
+
 ```
