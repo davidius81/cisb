@@ -229,3 +229,96 @@ Digest: sha256:bdb5c1d1d2f0a85e503d1beb4da6b54ed20ba533a557d6095567e42cea35fe01
 
 7 directories, 0 files
 
+
+# Modify the Module:
+```ruby
+
+#cd  /etc/puppetlabs/code/environments/production/modules/docker/templates
+# vim ./etc/sysconfig/docker.erb
+
+
+# This file is managed by Puppet and local changes
+# may be overwritten
+
+DOCKER="/usr/bin/<%= @docker_command %>"
+
+other_args="<% -%>
+<% if @root_dir %> -g <%= @root_dir %><% end -%>
+<% if @insecure_registry %> --insecure-registry <%= @insecure_registry %><% end -%>
+<% if @tcp_bind %> -H <%= @tcp_bind %><% end -%>
+<% if @socket_bind %> -H <%= @socket_bind %><% end -%>
+<% if @log_level %> -l <%= @log_level %><% end -%>
+<% if @selinux_enabled %> --selinux-enabled=<%= @selinux_enabled %><% end -%>
+<% if @socket_group %> -G <%= @socket_group %><% end -%>
+<% if @dns %><% @dns_array.each do |address| %> --dns <%= address %><% end %><% end -%>
+<% if @dns_search %><% @dns_search_array.each do |domain| %> --dns-search <%= domain %><% end %><% end -%>
+<% if @execdriver %> -e <%= @execdriver %> <% end -%>
+<% if @extra_parameters %><% @extra_parameters_array.each do |param| %> <%= param %><% end %><% end -%>"
+
+<% if @proxy %>export http_proxy='<%= @proxy %>'
+export https_proxy='<%= @proxy %>'<% end %>
+<% if @no_proxy %>export no_proxy='<%= @no_proxy %>'<% end %>
+# This is also a handy place to tweak where Docker's temporary files go.
+export TMPDIR="<%= @tmp_dir %>"
+<% if @shell_values %><% @shell_values_array.each do |param| %>
+<%= param %><% end %><% end -%>
+<% if @nowarn_kernel %># Resolves: rhbz#1176302 (docker issue #407)
+DOCKER_NOWARN_KERNEL_VERSION=1<% end %>
+
+```
+## Modify the Manifests files:
+
+Add the default value to params.pp
+
+```
+# cd /etc/puppetlabs/code/environments/production/modules/docker/manifests
+# vim params.pp
+# == Class: docker::params
+#
+# Default parameter values for the docker module
+#
+class docker::params {
+  $version                      = undef
+  $ensure                       = present
+  $tcp_bind                     = undef
+  $insecure_registry            = undef
+```
+Add the variable to service.pp
+
+```
+# vim service.pp
+# [*insecure_registry*]
+#   Which Domain name or Network address the private registry trust.
+#
+
+
+class docker::service (
+  $docker_command   = $docker::docker_command,
+  $service_name     = $docker::service_name,
+  $tcp_bind         = $docker::tcp_bind,
+  $insecure_registry = $docker::insecure_registry,
+  $socket_bind      = $docker::socket_bind,
+```
+```
+# vi init.pp
+# [*tcp_bind*]
+#   The tcp socket to bind to in the format
+#   tcp://127.0.0.1:4243
+#   Defaults to undefined
+#
+# [*insecure_registry*]
+#   The Domain name or address to bind to the private registry
+#   tcp://mydomain.com:5000
+#   Defaults to undefined
+#
+...
+
+class docker(
+  $version                     = $docker::params::version,
+  $ensure                      = $docker::params::ensure,
+  $prerequired_packages        = $docker::params::prerequired_packages,
+  $tcp_bind                    = $docker::params::tcp_bind,
+  $insecure_registry                    = $docker::params::insecure_registry,
+  $socket_bind                 = $docker::params::socket_bind,
+```
+
