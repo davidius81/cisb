@@ -4,9 +4,9 @@ This Document is related to Puppet infra
 
 ####Puppet support:####
 
-**mIRC Channel**
-
-* #geppetto on https://webchat.freenode.net/
+**mIRC Channel on https://webchat.freenode.net/**
+* #puppet
+* #geppetto 
 
 
 
