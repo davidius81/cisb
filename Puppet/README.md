@@ -1,10 +1,4 @@
 
-
-This Document is related to Puppet infra
-
-
-
-
 This Document is related to Puppet infra
 
 
