@@ -19,7 +19,7 @@ In this example, my Puppet Master server is **cosneuqapm01** and run Puppet Open
 ```
 
 Output
-```puppet
+```puppet 
 [root@cosneuqapm01 modules]# puppet module install garethr-docker
 Notice: Preparing to install into /etc/puppetlabs/code/environments/production/modules ...
 Notice: Downloading from https://forgeapi.puppetlabs.com ...
