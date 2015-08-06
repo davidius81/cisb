@@ -322,3 +322,9 @@ class docker(
   $socket_bind                 = $docker::params::socket_bind,
 ```
 
+Try to set the new value
+```
+# cd /etc/puppetlabs/code/environments/production/manifests/dockers
+
+
+```
