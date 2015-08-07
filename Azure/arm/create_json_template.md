@@ -89,3 +89,24 @@ data:    Canonical  UbuntuServer  15.10-alpha        eastus
 data:    Canonical  UbuntuServer  15.10-DAILY        eastus
 info:    vm image list-skus command OK
 ```
+
+
+Edit the template json and parameters:
+
+### Initiate the deployment:
+
+Create a Ressource Group:
+```
+# azure group create -n rgPuppetPOC01 -l "East US"
+```
+
+Deploy the vm:
+
+
+```
+# azure group deployment create \
+ -f /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy.json \
+ -e /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy.parameters.json \
+ -g rgPuppetPOC01 \
+ -n deloyPuppetPOC01
+```
