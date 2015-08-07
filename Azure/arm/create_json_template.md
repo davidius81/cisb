@@ -124,5 +124,33 @@ Deploy the vm:
 ```
 
 Ouput:
+```yaml
+info:    Executing command group deployment create
++ Initializing template configurations and parameters
+error:   Unexpected string
+info:    Error information has been recorded to /root/.azure/azure.err
+error:   group deployment create command failed
+
+```
+
+Show the error messages:
+
 
 ```yaml
+# azure insights logs list -g rgPuppetPOC01 -d -b '2015-08-07T15:00:00.991Z'| grep -i fail
+data:      statusMessage: {"error":{"code":"InvalidTemplate","message":"Deployment template validation failed: 'The template parameters 'CentOSVersion' are not valid; they are not present in the original template and can therefore not be provided at deployment time. The only supported parameters for this template are 'newStorageAccountName, adminUsername, adminPassword, dnsNameForPublicIP, ubuntuOSVersion'.'."}}
+data:      value: Failed
+data:      localizedValue: Failed
+```
+
+After fixing the quotes in azuredeploy-custom_v2.json:
+
+Delete the Resource Group:
+
+```python
+# azure group delete -q rgPuppetPOC01
+info:    Executing command group delete
++ Deleting resource group rgPuppetPOC01
+info:    group delete command OK
+ /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy-custom_v2.json  -e /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy-parameters.json  -g rgPuppetPOC01  -n deloyPuppetPOC01
+```
