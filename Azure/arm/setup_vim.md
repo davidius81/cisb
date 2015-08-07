@@ -61,13 +61,13 @@ let g:vim_json_syntax_conceal = 0
 
 
 Open vim and Install the Plugins
-```
+```vim
 # vim
 :PluginInstall
 ```
 
 See Vundle Doc
-```
+```vim
 :h vundle
 ```
 
@@ -84,7 +84,7 @@ gx: open the link under the cursor in the same browser as the standard gx comman
 The standard gx is extended by allowing you to put your cursor anywhere inside a link.
 
 For example, all the following cursor positions will work:
-```
+```vim
 [Example](http://example.com)
 ^  ^    ^^   ^       ^
 1  2    34   5       6
