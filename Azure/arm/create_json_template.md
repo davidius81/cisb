@@ -137,20 +137,34 @@ Show the error messages:
 
 
 ```yaml
-# azure insights logs list -g rgPuppetPOC01 -d -b '2015-08-07T15:00:00.991Z'| grep -i fail
-data:      statusMessage: {"error":{"code":"InvalidTemplate","message":"Deployment template validation failed: 'The template parameters 'CentOSVersion' are not valid; they are not present in the original template and can therefore not be provided at deployment time. The only supported parameters for this template are 'newStorageAccountName, adminUsername, adminPassword, dnsNameForPublicIP, ubuntuOSVersion'.'."}}
-data:      value: Failed
-data:      localizedValue: Failed
+# azure insights logs list -g rgPuppetPOC01 -d -b '2015-08-07T15:00:00.991Z'| grep -i error
+
 ```
 
-After fixing the quotes in azuredeploy-custom_v2.json:
+After fixing the quotes in json file:
 
-Delete the Resource Group:
-
-```python
-# azure group delete -q rgPuppetPOC01
-info:    Executing command group delete
-+ Deleting resource group rgPuppetPOC01
-info:    group delete command OK
- /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy-custom_v2.json  -e /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy-parameters.json  -g rgPuppetPOC01  -n deloyPuppetPOC01
+```yaml
+# azure group deployment create  -f /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy-custom_v2.json  -e /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy-parameters.json  -g rgPuppetPOC01  -n deloyPuppetPOC01
+info:    Executing command group deployment create
++ Initializing template configurations and parameters
++ Creating a deployment
+info:    Created template deployment "deloyPuppetPOC01"
++ Registering providers
+info:    Registering provider microsoft.storage
+info:    Registering provider microsoft.network
+info:    Registering provider microsoft.compute
++ Waiting for deployment to complete
+data:    DeploymentName     : deloyPuppetPOC01
+data:    ResourceGroupName  : rgPuppetPOC01
+data:    ProvisioningState  : Succeeded
+data:    Timestamp          : 2015-08-07T21:11:25.0567262Z
+data:    Mode               : Incremental
+data:    Name                   Type          Value
+data:    ---------------------  ------------  --------------------
+data:    newStorageAccountName  String        csiblalone01eastus01
+data:    adminUsername          String        dlalonde
+data:    adminPassword          SecureString  undefined
+data:    dnsNameForPublicIP     String        centos71node01
+data:    centOSVersion          String        7.1
+info:    group deployment create command OK
 ```
