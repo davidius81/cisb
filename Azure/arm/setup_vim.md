@@ -56,14 +56,9 @@ let g:vim_markdown_folding_disabled=1
 "Disable Concealing
 let g:vim_json_syntax_conceal = 0
 ```
-Added folding of {...} and [...] blocks. To enable it :setlocal foldmethod=syntax (do it permanently on the ftplugin/json.vim file).
-```
-vi vim /root/.vim/bundle/vim-json/ftplugin/json.vim
 
-:setlocal foldmethod=syntax
-```
+
 Open vim and Install the Plugins
-
 ```
 # vim
 :PluginInstall
