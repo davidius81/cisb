@@ -168,3 +168,15 @@ data:    dnsNameForPublicIP     String        centos71node01
 data:    centOSVersion          String        7.1
 info:    group deployment create command OK
 ```
+
+List the Public IP:
+
+```
+# azure network public-ip list rgPuppetPOC01
+info:    Executing command network public-ip list
++ Getting the public ip addresses
+data:    Name        Location  Allocation  IP Address    Idle timeout  DNS Name
+data:    ----------  --------  ----------  ------------  ------------  ----------------------------------------
+data:    myPublicIP  eastus    Dynamic     40.76.90.181  4             centos71node01.eastus.cloudapp.azure.com
+info:    network public-ip list command OK
+```
