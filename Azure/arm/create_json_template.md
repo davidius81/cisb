@@ -99,14 +99,30 @@ Create a Ressource Group:
 ```
 # azure group create -n rgPuppetPOC01 -l "East US"
 ```
-
+Output:
+```yaml
+info:    Executing command group create
++ Getting resource group rgPuppetPOC01
++ Creating resource group rgPuppetPOC01
+info:    Created resource group rgPuppetPOC01
+data:    Id:                  /subscriptions/####/resourceGroups/rgPuppetPOC01
+data:    Name:                rgPuppetPOC01
+data:    Location:            eastus
+data:    Provisioning State:  Succeeded
+data:    Tags:
+data:
+info:    group create command OK
+```
 Deploy the vm:
-
 
 ```
 # azure group deployment create \
- -f /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy.json \
- -e /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy.parameters.json \
+ -f /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy-custom_v2.json \
+ -e /opt/cgi/git/tooling/csib/Azure/scripts/cgi/template/linux_template/azuredeploy-parameters.json \
  -g rgPuppetPOC01 \
  -n deloyPuppetPOC01
 ```
+
+Ouput:
+
+```yaml
