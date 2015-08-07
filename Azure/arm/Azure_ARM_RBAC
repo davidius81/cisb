@@ -1,0 +1,286 @@
+A common ask when working with Azure is “how do I protect my critical resources?” Often this ask is related to protecting those resources from a human doing something they shouldn’t be doing.  There are a few ways to apply varying levels of control to Azure resources: role-based access control (RBAC) and resource locks. 
+
+ 
+
+Role-Based Access Control (RBAC)
+
+Using role-based access control, it is possible to restrict control-plane access to various Azure resources. 
+Roles can be assigned at the subscription, resource group, and individual resource scope. A role is associated with specific rights (one or more “action” and “not action” values). 
+There are currently 23 built-in roles.
+
+Leveraging RBAC is a great way to help protect resources in Azure. With the Reader and various Contributor roles (e.g. Virtual Machine Contributor, Storage Account Contributor, 
+SQL DB Contributor, etc.), you can effectively limit the actions that a user can take against a resource. However, even with one of the Contributor roles, it 
+is still possible to delete
+ specific resources. This makes it very easy to accidently delete an item . . . often an item that is not so easy to get back, like an Azure storage account. 
+Oops! Resource locks provide a way to prevent the deletion of resources.
+
+
+
+Role-based access control (RBAC) in Azure Portal and Azure Resource Manager API allows you to manage access to your subscription and resources at a fine-grained level. 
+With this feature, you can grant access for Active Directory users, groups, or service principals by assigning some roles to them at a 
+particular scope.
+
+
+[root@clientpuppet07 deployment]# azure account list
+info:    Executing command account list
+data:    Name                      Id                                    Tenandt Id                            Current
+data:    ------------------------  ------------------------------------  ------------------------------------  -------
+data:    CA-Canada TBC-GIS Canada  c93a74b7-f399-405c-a8ae-6dc259fe7430  cc28a5e8-0488-431c-8bb8-be58ab7d8b97  true
+info:    account list command OK
+
+
+
+Check existing role assignments
+Now let's check what role assignments exist in the subscription already. Type:
+
+# azure role assignment list
+
+==> To create a role assignment, you need to think about:
+
+* Who you want to assign the role to: you can use the following Azure Active Directory cmdlets to see what users, groups and service principals you have in your directory.
+
+# azure ad user list 
+# azure ad user show 
+# azure ad group list 
+# azure ad group show 
+# azure ad group member list 
+# azure ad sp list 
+# azure ad sp show
+
+* What role you want to assign: you can use the following cmdlet to see the supported role definitions.
+
+# azure role list
+
+
+* What scope you want to assign: you have three levels for scopes:
+
+- The current subscription
+- A resource group. To get a list of resource groups, type azure group list
+- A resource. To get a list of resources, type azure resource list
+
+==> Then use azure role assignment create to create a role assignment. For example:
+
+= This will create a role assignment at the current subscription level for a user as a reader:
+# azure role assignment create --upn <user's email> -o Reader
+
+= This will create a role assignment at a resource group level:
+PS C:\> azure role assignment create --upn <user's email> -o Contributor -g group1 
+
+= This will create a role assignment at a resource level:
+# azure role assignment create --upn <user's email> -o Owner -g group1 -r Microsoft.Web/sites -u site1
+
+
+##Verify permissions
+After you check that your account has some role assignments, you can actually see the permissions these role assignments grant you by running:
+
+
+# azure group list
+# azure resource list
+
+
+You can also check existing role assignments for a particular role definition, at a particular scope for a particular user. Type:
+# azure role assignment list -g group1 --upn <user email> -o Owner
+
+
+###
+[root@clientpuppet07 ~]# azure ad user list |more
+info:    Executing command ad user list
+info:    Listing active directory users
+data:    Object Id:       19eb1f19-d4f3-4db7-88c5-39529ca5f86a
+data:    Principal Name:  alessandro.carnevale@GISCanada.onmicrosoft.com
+data:    Display Name:    Carnevale, Alessandro
+data:    E-Mail:          alessandro.carnevale@GISCanada.onmicrosoft.com
+data:
+data:    Object Id:       ee66a546-43e6-4cb7-9f76-aa606d3ec4b1
+data:    Principal Name:  alexandre.caya_cgi.com#EXT#@GISCanada.onmicrosoft.com
+data:    Display Name:    Alexandre Caya
+data:    E-Mail:          alexandre.caya@cgi.com
+data:
+data:    Object Id:       0ba2129d-a0d4-4a1c-9978-7838ced3c32a
+data:    Principal Name:  alexandre.caya@gisdemo.ca
+data:    Display Name:    Caya, Alexandre
+data:    E-Mail:          alexandre.caya@gisdemo.ca
+data:
+data:    Object Id:       df8bb6a9-2637-48d1-a619-2c8819ff67c1
+data:    Principal Name:  cgi_azure_can.giscan_cgi.com#EXT#@GISCanada.onmicrosoft.com
+data:    Display Name:    cgi_azure_can.giscan@cgi.com
+data:    E-Mail:          cgi_azure_can.giscan@cgi.com
+data:
+data:    Object Id:       fe547907-e086-4967-8c10-c4bda1cbd5eb
+data:    Principal Name:  Danilo.Andon@GISCanada.onmicrosoft.com
+data:    Display Name:    Andon, Danilo
+data:    E-Mail:          Danilo.Andon@GISCanada.onmicrosoft.com
+
+
+[root@clientpuppet07 ~]# azure ad user show --upn Danilo.Andon@GISCanada.onmicrosoft.com
+info:    Executing command ad user show
++ Getting active directory user
+data:    Object Id:       fe547907-e086-4967-8c10-c4bda1cbd5eb
+data:    Principal Name:  Danilo.Andon@GISCanada.onmicrosoft.com
+data:    Display Name:    Andon, Danilo
+data:    E-Mail:          Danilo.Andon@GISCanada.onmicrosoft.com
+
+
+###
+[root@clientpuppet07 ~]#  azure role list --json | egrep 'roleName' | awk '{ print $2 }'
+"API
+"Application
+"BizTalk
+"ClearDB
+"Contributor",
+"Data
+"DevTest
+"DocumentDB
+"Intelligent
+"New
+"Owner",
+"Reader",
+"Redis
+"SQL
+"SQL
+"SQL
+"Scheduler
+"Search
+"Security
+"Storage
+"User
+"Virtual
+"Virtual
+"Web
+"Website
+
+
+##
+[root@clientpuppet07 ~]#  azure role list --json | egrep 'roleName|description'
+      "roleName": "API Management Service Contributor",
+      "description": "Lets you manage API Management services, but not access to them.",
+      "roleName": "Application Insights Component Contributor",
+      "description": "Lets you manage Application Insights components, but not access to them.",
+      "roleName": "BizTalk Contributor",
+      "description": "Lets you manage BizTalk services, but not access to them.",
+      "roleName": "ClearDB MySQL DB Contributor",
+      "description": "Lets you manage ClearDB MySQL databases, but not access to them.",
+      "roleName": "Contributor",
+      "description": "Lets you manage everything except access to resources.",
+      "roleName": "Data Factory Contributor",
+      "description": "Lets you manage data factories, but not access to them.",
+      "roleName": "DevTest Lab User",
+      "description": "Lets you view everything, and connect, start, restart, and shutdown virtual machines.",
+      "roleName": "DocumentDB Account Contributor",
+      "description": "Lets you manage DocumentDB accounts, but not access to them.",
+      "roleName": "Intelligent Systems Account Contributor",
+      "description": "Lets you manage Intelligent Systems accounts, but not access to them.",
+      "roleName": "New Relic APM Account Contributor",
+      "description": "Lets you manage New Relic Application Performance Management accounts and applications, but not access to them.",
+      "roleName": "Owner",
+      "description": "Lets you manage everything, including access to resources.",
+      "roleName": "Reader",
+      "description": "Lets you view everything, but not make any changes.",
+      "roleName": "Redis Cache Contributor",
+      "description": "Lets you manage Redis caches, but not access to them.",
+      "roleName": "SQL DB Contributor",
+      "description": "Lets you manage SQL databases, but not access to them. Also, you canât manage their security-related policies or their parent SQL servers.",
+      "roleName": "SQL Security Manager",
+      "description": "Lets you manage the security-related policies of SQL servers and databases, but not access to them.",
+      "roleName": "SQL Server Contributor",
+      "description": "Lets you manage SQL servers and databases, but not access to them, and not their security -related policies.",
+      "roleName": "Scheduler Job Collections Contributor",
+      "description": "Lets you manage Scheduler job collections, but not access to them.",
+      "roleName": "Search Service Contributor",
+      "description": "Lets you manage Search services, but not access to them.",
+      "roleName": "Security Manager",
+      "description": "Lets you manage security components, security policies and virtual machines",
+      "roleName": "Storage Account Contributor",
+      "description": "Lets you manage storage accounts, but not access to them.",
+      "roleName": "User Access Administrator",
+      "description": "Lets you manage user access to Azure resources.",
+      "roleName": "Virtual Machine Contributor",
+      "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account theyâre connected to.",
+      "roleName": "Virtual Network Contributor",
+      "description": "Lets you manage virtual networks, but not access to them.",
+      "roleName": "Web Plan Contributor",
+      "description": "Lets you manage the web plans for websites, but not access to them.",
+      "roleName": "Website Contributor",
+      "description": "Lets you manage websites (not web plans), but not access to them.",
+
+###
+
+[root@clientpuppet07 ~]# azure role assignment create --upn Danilo.Andon@GISCanada.onmicrosoft.com -o Contributor -g INFRACGI-RG
+info:    Executing command role assignment create
++ Getting role definition id
++ Creating role assignment
+info:    role assignment create command OK
+
+
+[root@clientpuppet07 ~]# azure role assignment list -g INFRACGI-RG
+info:    Executing command role assignment list
++ Getting role assignment
+data:    AD Object:
+data:      ID:              fe547907-e086-4967-8c10-c4bda1cbd5eb
+data:      Type:            User
+data:      Display Name:    Andon, Danilo
+data:      Principal Name:  Danilo.Andon@GISCanada.onmicrosoft.com
+data:    Scope:             /subscriptions/c93a74b7-f399-405c-a8ae-6dc259fe7430/resourcegroups/INFRACGI-RG
+data:    Role:
+data:      Name:            Contributor
+data:      Permissions:
+data:        Actions:      *
+data:        NotActions:   Microsoft.Authorization/*/Write,Microsoft.Authorization/*/Delete
+data:
+info:    role assignment list command OK
+[root@clientpuppet07 ~]#  azure role assignment list -g infracsib
+info:    Executing command role assignment list
++ Getting role assignment
+info:    No matching role assignments were found
+info:    role assignment list command OK
+
+
+###
+[root@clientpuppet07 ~]# azure role assignment create --upn Danilo.Andon@GISCanada.onmicrosoft.com -o Owner -g INFRACGI-RG -r Microsoft.Compute/virtualMachines -u VM-CSIB-100
+info:    Executing command role assignment create
++ Getting role definition id
++ Creating role assignment
+info:    role assignment create command OK
+
+###
+[root@clientpuppet07 ~]# azure role assignment list -g INFRACGI-RG -r VM-CSIB-100
+info:    Executing command role assignment list
++ Getting role assignment
+data:    AD Object:
+data:      ID:              fe547907-e086-4967-8c10-c4bda1cbd5eb
+data:      Type:            User
+data:      Display Name:    Andon, Danilo
+data:      Principal Name:  Danilo.Andon@GISCanada.onmicrosoft.com
+data:    Scope:             /subscriptions/c93a74b7-f399-405c-a8ae-6dc259fe7430/resourcegroups/INFRACGI-RG
+data:    Role:
+data:      Name:            Contributor
+data:      Permissions:
+data:        Actions:      *
+data:        NotActions:   Microsoft.Authorization/*/Write,Microsoft.Authorization/*/Delete
+data:
+info:    role assignment list command OK
+
+
+###
+Lock
+Remove-AzureResourceLock -ResourceId '/subscriptions/0bbbc191-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/CollierMedia/providers/Microsoft.Storage/storageAccounts/collierfiles2014/providers/Microsoft.Authorization/locks/CollierLock'
+
+
+
+PS C:\> Get-AzureResourceLock | Remove-AzureResourceLock
+
+Confirmer
+Are you sure you want to delete the following lock:
+/subscriptions/c93a74b7-f399-405c-a8ae-6dc259fe7430/resourcegroups/infracsib/providers/Microsoft.Compute/virtualMachine
+s/dockerhost2/providers/Microsoft.Authorization/locks/VirtualMachine
+[O] Oui  [N] Non  [S] Suspendre  [?] Aide (la valeur par défaut est « O ») : O
+Remove-AzureResourceLock : La référence d'objet n'est pas définie à une instance d'un objet.
+Au caractère Ligne:1 : 25
++ Get-AzureResourceLock | Remove-AzureResourceLock
++                         ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Remove-AzureResourceLock], NullReferenceException
+    + FullyQualifiedErrorId : System.NullReferenceException,Microsoft.Azure.Commands.ResourceManager.Cmdlets.Implement
+   ation.RemoveAzureResourceLockCmdlet
+
+
+'/subscriptions/c93a74b7-f399-405c-a8ae-6dc259fe7430/resourcegroups/infracsib/providers/Microsoft.Compute/virtualMachines/dockerhost1'
