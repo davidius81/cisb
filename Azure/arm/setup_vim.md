@@ -1,12 +1,17 @@
 
 
-# Enable json syntax in vim
+# We will install following Plugin for vim
+
+* MarkDown syntax
+* json syntax
 
 
 *Source:https://github.com/VundleVim/Vundle.vim*
 
+MarkDown mapping can be found [here](https://github.com/plasticboy/vim-markdown)
 
-Install Plugin Manage Vundle
+
+First install Plugin Manage Vundle
 ```
 # cd
 # git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -15,7 +20,7 @@ Install Plugin Manage Vundle
 
 Add this to your ~/.vimrc
 
-```jason
+```vim
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -49,6 +54,9 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" Disable Markdown Folding:
+let g:vim_markdown_folding_disabled=1
 ```
 
 Open vim and Install the Plugins
@@ -62,5 +70,7 @@ See Vundle Doc
 ```
 :h vundle
 ```
+
+
 
 
