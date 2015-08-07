@@ -1,6 +1,6 @@
 
 
-# We will install following Plugin for vim
+# Install following Plugin for vim
 
 * MarkDown syntax
 * json syntax
