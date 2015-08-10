@@ -17,7 +17,7 @@ First install Plugin Manage Vundle
 #
 ```
 
-Add this to your ~/.vimrc
+Add this to your ~/.vimrc, on CentOS, you may require to add syntax on in you ~/.vimrc, but not required on Ubuntu.
 
 ```vim
 set nocompatible              " be iMproved, required
