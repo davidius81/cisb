@@ -180,3 +180,5 @@ data:    ----------  --------  ----------  ------------  ------------  ---------
 data:    myPublicIP  eastus    Dynamic     40.76.90.181  4             centos71node01.eastus.cloudapp.azure.com
 info:    network public-ip list command OK
 ```
+
+
