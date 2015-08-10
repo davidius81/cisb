@@ -89,3 +89,30 @@ CONTAINER ID        IMAGE                         COMMAND                CREATED
 0abc723b5590        registry:2                    "registry cmd/regist   2 days ago          Up 2 days           0.0.0.0:5000->5000/tcp                                  cgiregistry01
 29491b9e5719        ubuntu:latest                 "/bin/sh -c 'while t   2 days ago          Up 2 days                                                                   helloworld
 ```
+
+
+Journal log
+
+```journalctl
+
+ journalctl -f -u docker| egrep -i "error|gitlab"
+Aug 10 15:14:12 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:12Z" level=info msg="+job rm(gitlab)"
+Aug 10 15:14:17 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:17Z" level=info msg="+job log(destroy, 7572d2f5c13374f7e0eccc7cfbe20df3f5113e6c6d22e29694ae382f54e58b30, docker.io/sameersbn/gitlab:latest)"
+Aug 10 15:14:17 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:17Z" level=info msg="-job log(destroy, 7572d2f5c13374f7e0eccc7cfbe20df3f5113e6c6d22e29694ae382f54e58b30, docker.io/sameersbn/gitlab:latest) = OK (0)"
+Aug 10 15:14:17 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:17Z" level=info msg="-job rm(gitlab) = OK (0)"
+Aug 10 15:14:17 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:17Z" level=info msg="POST /v1.18/containers/create?name=gitlab"
+Aug 10 15:14:17 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:17Z" level=info msg="+job create(gitlab)"
+Aug 10 15:14:17 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:17Z" level=error msg="Error unmounting device 5020e2ba52e8451fc6c52ccd38e6afd34d6122d49b62c07e3ec8117f40ad09f6: UnmountDevice: device not-mounted id 5020e2ba52e8451fc6c52ccd38e6afd34d6122d49b62c07e3ec8117f40ad09f6"
+Aug 10 15:14:17 cosneuqanode03 docker[57025]: Cannot start container 5020e2ba52e8451fc6c52ccd38e6afd34d6122d49b62c07e3ec8117f40ad09f6: [8] System error: write /sys/fs/cgroup/cpuset/system.slice/docker-5020e2ba52e8451fc6c52ccd38e6afd34d6122d49b62c07e3ec8117f40ad09f6.scope/cpuset.cpus: invalid argument
+Aug 10 15:14:17 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:17Z" level=error msg="Handler for POST /containers/{name:.*}/start returned error: Cannot start container 5020e2ba52e8451fc6c52ccd38e6afd34d6122d49b62c07e3ec8117f40ad09f6: [8] System error: write /sys/fs/cgroup/cpuset/system.slice/docker-5020e2ba52e8451fc6c52ccd38e6afd34d6122d49b62c07e3ec8117f40ad09f6.scope/cpuset.cpus: invalid argument"
+Aug 10 15:14:17 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:17Z" level=error msg="HTTP Error: statusCode=500 Cannot start container 5020e2ba52e8451fc6c52ccd38e6afd34d6122d49b62c07e3ec8117f40ad09f6: [8] System error: write /sys/fs/cgroup/cpuset/system.slice/docker-5020e2ba52e8451fc6c52ccd38e6afd34d6122d49b62c07e3ec8117f40ad09f6.scope/cpuset.cpus: invalid argument"
+Aug 10 15:14:24 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:24Z" level=info msg="+job log(create, 3a61c943ae0407150a50823ffbf371d5e681438d7b1661f1c151bf46fa7a88b0, docker.io/sameersbn/gitlab:latest)"
+Aug 10 15:14:24 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:24Z" level=info msg="-job log(create, 3a61c943ae0407150a50823ffbf371d5e681438d7b1661f1c151bf46fa7a88b0, docker.io/sameersbn/gitlab:latest) = OK (0)"
+Aug 10 15:14:24 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:24Z" level=info msg="-job create(gitlab) = OK (0)"
+Aug 10 15:14:24 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:24Z" level=info msg="+job log(start, 3a61c943ae0407150a50823ffbf371d5e681438d7b1661f1c151bf46fa7a88b0, docker.io/sameersbn/gitlab:latest)"
+Aug 10 15:14:24 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:24Z" level=info msg="-job log(start, 3a61c943ae0407150a50823ffbf371d5e681438d7b1661f1c151bf46fa7a88b0, docker.io/sameersbn/gitlab:latest) = OK (0)"
+Aug 10 15:14:24 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:24Z" level=error msg="Error unmounting device 6c12ab7fad3e908275c0a16d33da41158c1261edfd6981fc51efa4e1b3522fed: UnmountDevice: device not-mounted id 6c12ab7fad3e908275c0a16d33da41158c1261edfd6981fc51efa4e1b3522fed"
+Aug 10 15:14:24 cosneuqanode03 docker[57025]: Cannot start container 6c12ab7fad3e908275c0a16d33da41158c1261edfd6981fc51efa4e1b3522fed: [8] System error: write /sys/fs/cgroup/cpuset/system.slice/docker-6c12ab7fad3e908275c0a16d33da41158c1261edfd6981fc51efa4e1b3522fed.scope/cpuset.cpus: invalid argument
+Aug 10 15:14:24 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:24Z" level=error msg="Handler for POST /containers/{name:.*}/start returned error: Cannot start container 6c12ab7fad3e908275c0a16d33da41158c1261edfd6981fc51efa4e1b3522fed: [8] System error: write /sys/fs/cgroup/cpuset/system.slice/docker-6c12ab7fad3e908275c0a16d33da41158c1261edfd6981fc51efa4e1b3522fed.scope/cpuset.cpus: invalid argument"
+Aug 10 15:14:24 cosneuqanode03 docker[57025]: time="2015-08-10T15:14:24Z" level=error msg="HTTP Error: statusCode=500 Cannot start container 6c12ab7fad3e908275c0a16d33da41158c1261edfd6981fc51efa4e1b3522fed: [8] System error: write /sys/fs/cgroup/cpuset/system.slice/docker-6c12ab7fad3e908275c0a16d33da41158c1261edfd6981fc51efa4e1b3522fed.scope/cpuset.cpus: invalid argument"
+```
