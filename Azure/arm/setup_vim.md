@@ -4,6 +4,7 @@
 
 * MarkDown syntax
 * json syntax
+* Puppet syntax
 
 
 First install Plugin Manage Vundle
@@ -37,6 +38,9 @@ Plugin 'elzr/vim-json'
 "Markdown plugin
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+
+# Puppet syntax
+Plugin 'rodjek/vim-puppet'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
