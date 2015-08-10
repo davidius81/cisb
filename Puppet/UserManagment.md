@@ -1,7 +1,7 @@
 # User Management with Puppet
 
 
-## How to gie temporary user access during a change.
+## How to give temporary user access during a change.
 
 
 ** Windows***
