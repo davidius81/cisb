@@ -95,4 +95,20 @@ lrwxrwxrwx. 1 root     root       31 Aug 11 18:43 check_azure_storage.py -> /usr
 [root@zabbix-server etc]# ls -la azure.publishsettings
 -rw-r-----. 1 root zabbix 3837 Aug 11 18:26 azure.publishsettings
 ```
- 
+```
+
+]# cp -v /usr//bin/check_azure_*.py /srv/docker/zabbix/zabbix-server/externalscripts/
+‘/usr//bin/check_azure_ad.py’ -> ‘/srv/docker/zabbix/zabbix-server/externalscripts/check_azure_ad.py’
+‘/usr//bin/check_azure_compute.py’ -> ‘/srv/docker/zabbix/zabbix-server/externalscripts/check_azure_compute.py’
+‘/usr//bin/check_azure_paas.py’ -> ‘/srv/docker/zabbix/zabbix-server/externalscripts/check_azure_paas.py’
+‘/usr//bin/check_azure_sql.py’ -> ‘/srv/docker/zabbix/zabbix-server/externalscripts/check_azure_sql.py’
+‘/usr//bin/check_azure_storage.py’ -> ‘/srv/docker/zabbix/zabbix-server/externalscripts/check_azure_storage.py’
+
+[root@zabbix-server etc]# yum install -y python-pip
+[root@zabbix-server etc]# pip install azure
+
+[root@zabbix-server etc]# pip install azuremonitor 
+pip install cryptography
+yum instal gcc
+```
+
