@@ -108,7 +108,20 @@ lrwxrwxrwx. 1 root     root       31 Aug 11 18:43 check_azure_storage.py -> /usr
 [root@zabbix-server etc]# pip install azure
 
 [root@zabbix-server etc]# pip install azuremonitor 
+
+
+yum install gcc libffi-devel python-devel openssl-devel
 pip install cryptography
-yum instal gcc
 ```
+
+[root@zabbix-server /]# python /usr/local/share/zabbix/externalscripts/check_azure_compute.py -p /usr/local/etc/azure.publishsettings zabbix-server
+Traceback (most recent call last):
+  File "/usr/local/share/zabbix/externalscripts/check_azure_compute.py", line 137, in <module>
+    main()
+  File "/usr/local/share/zabbix/externalscripts/check_azure_compute.py", line 117, in main
+    pem_path = publishsettings.write_pem()
+  File "/usr/lib/python2.7/site-packages/azuremonitor/publishsettings.py", line 52, in write_pem
+    pkcs12 = OpenSSL.crypto.load_pkcs12(self.pkcs12_buf)
+NameError: global name 'OpenSSL' is not defined
+
 
