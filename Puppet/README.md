@@ -22,3 +22,6 @@ First [download](http://puppetlabs.github.io/geppetto/download.html) it.
 
 ![alt text](http://puppetlunch.com/public/images/planning2.png "Puppet Architecture")
 
+
+Using r10k/git/environment to generate dynamic environment and promote module to production.
+http://garylarizza.com/blog/2014/02/18/puppet-workflow-part-3/
