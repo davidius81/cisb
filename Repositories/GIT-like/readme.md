@@ -5,7 +5,7 @@
 
 #### Git-like products to evaluate:
 
-* Git-like
+
 * Bitbucket
 * gitosis
 * gitolite
@@ -15,6 +15,7 @@
 * gitlist.org
 * gitlit.com
 * gitweb
+* stash
 
 
 ####Git Workflow
