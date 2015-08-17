@@ -37,3 +37,9 @@ List your Docker registry
 cosneuqanode03:5000/csib/gitlab-postgresql   9.4-3               6fc4cce07194        3 days ago          231.5 MB
 ```
 
+Pull the new image:
+```
+# docker pull  cosneuqanode03:5000/csib/gitlab-postgresql:9.4-3
+
+```
+
