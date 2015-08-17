@@ -29,7 +29,20 @@ We must add a command to the auditor script/scan to send the report back to audi
 
 ###Record shell output 
 
-Using script command
+
+####
+Using history and tree.
+
+```
+     file { '/etc/profile.d/root_bash_logging.sh':
+            content => 'PROMPT_COMMAND=\'history -a >(tee -a ~/.bash_history | logger -t "bash_$USER[$$]")\'',
+            owner => "root",
+            group => "root",
+            mode => 644
+```
+
+
+####Using **script** command
 
 This example is not complete, I still have to make sure another script is not started when they do sudo su - from a regular user. 
 But this is a good start.
