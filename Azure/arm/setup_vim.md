@@ -39,7 +39,7 @@ Plugin 'elzr/vim-json'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
-# Puppet syntax
+" Puppet syntax
 Plugin 'rodjek/vim-puppet'
 
 " All of your Plugins must be added before the following line
