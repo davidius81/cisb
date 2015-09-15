@@ -12,8 +12,8 @@ https://forge.puppetlabs.com/modules?utf-8=%E2%9C%93&sort=rank&q=windows&_ga=1.1
 https://forge.puppetlabs.com/puppetlabs/windows
 
 
-*Firewall:thoward/windows_firewall
-*jriviere/windows_ad
-*jriviere/windows_sql
-*liamjbennett/windows_autoupdate
-*etc...
+* Firewall:thoward/windows_firewall
+* jriviere/windows_ad
+* jriviere/windows_sql
+* liamjbennett/windows_autoupdate
+* etc...
