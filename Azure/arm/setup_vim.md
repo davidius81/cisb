@@ -41,6 +41,8 @@ Plugin 'plasticboy/vim-markdown'
 
 " Puppet syntax
 Plugin 'rodjek/vim-puppet'
+" Puppet Syntax valiator
+Plugin 'scrooloose/Syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
