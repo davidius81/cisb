@@ -9,6 +9,7 @@
 # puppet module --environment on_prem  install puppet-rundeck
 # puppet module --environment on_prem  install puppetlabs-dashboard
 # puppet module install --environment on_prem saz-timezone
+# puppet module --environment dev install mjhas-postfix
 ```
 
 # Docker Registry
