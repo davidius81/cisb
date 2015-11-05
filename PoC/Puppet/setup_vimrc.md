@@ -6,7 +6,7 @@
 * json syntax
 * Puppet syntax
 * Syntastic to validate code syntac when saving
-
+* yaml syntax
 
 First install Plugin Manage Vundle
 
@@ -36,8 +36,13 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin to highlight json syntax
 Plugin 'elzr/vim-json'
 
-"Markdown plugin
+"Plugin to highlight yaml syntax
+Plugin 'avakhov/vim-yaml'
+
+"Tabluar
 Plugin 'godlygeek/tabular'
+
+"Markdown plugin
 Plugin 'plasticboy/vim-markdown'
 
 " Puppet syntax
