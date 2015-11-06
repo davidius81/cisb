@@ -10,7 +10,8 @@ Dependencies
 	* pyodbc - Connect to SQL Azure
 	* FreeTDS - Used by ODBC to connect to SQL Azure
 	
-	
+see also https://pypi.python.org/pypi/azuremonitor/0.1
+
 *Source:(https://github.com/MsOpenTech/WaMo)*
 
 1. Install Python
